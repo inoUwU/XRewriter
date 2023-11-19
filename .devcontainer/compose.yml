@@ -1,0 +1,8 @@
+services:
+  xrewriter:
+    image: rust:1.74.0-bookworm
+    restart: always
+    tty: true
+    volumes:
+      - ../:/workspace
+    working_dir: /workspace
