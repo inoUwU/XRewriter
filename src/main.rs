@@ -7,8 +7,10 @@ use serenity::model::gateway::Ready;
 use serenity::prelude::*;
 use std::env;
 
-static DOMAIN_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"(x|twitter)\.com").unwrap());
-static URL_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"(https?://[^? ]+)(\?[^ ]+)?").unwrap());
+static DOMAIN_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"\b(x\.com|twitter\.com)\b").unwrap());
+static URL_REGEX: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r"(https?://[^?\s　]+)(\?[^　\s]+)?").unwrap());
+static REP_DOMAIN: &str = "fixupx.com";
 
 struct Handler;
 
@@ -16,7 +18,7 @@ struct Handler;
 impl EventHandler for Handler {
     async fn message(&self, ctx: Context, msg: Message) {
         if !msg.is_own(&ctx.cache) && DOMAIN_REGEX.is_match(&msg.content) {
-            let replaceed = DOMAIN_REGEX.replace_all(&msg.content, "fixupx.com");
+            let replaceed = DOMAIN_REGEX.replace_all(&msg.content, REP_DOMAIN);
             if let Some(cap) = URL_REGEX.captures(&replaceed) {
                 if let Err(why) = msg.reply(&ctx.http, &cap[0]).await {
                     println!("Err sending message: {why:?}");
