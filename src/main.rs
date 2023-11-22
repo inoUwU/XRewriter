@@ -18,8 +18,8 @@ impl EventHandler for Handler {
         if !msg.is_own(&ctx.cache) && DOMAIN_REGEX.is_match(&msg.content) {
             let replaceed = DOMAIN_REGEX.replace_all(&msg.content, "fixupx.com");
             if let Some(cap) = URL_REGEX.captures(&replaceed) {
-                if let Err(why) = msg.channel_id.say(&ctx.http, &cap[0]).await {
-                    println!("Error sending message: {why:?}");
+                if let Err(why) = msg.reply(&ctx.http, &cap[0]).await {
+                    println!("Err sending message: {why:?}");
                 }
             }
         }
