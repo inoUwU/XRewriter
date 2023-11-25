@@ -1,6 +1,9 @@
 services:
   xrewriter:
-    image: rust:1.74.0-bookworm
+   # image: rust:1.74.0-bookworm
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     restart: always
     tty: true
     volumes:
