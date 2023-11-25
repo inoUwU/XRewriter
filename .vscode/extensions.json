@@ -1,8 +1,5 @@
 {
     "recommendations": [
-        "rust-lang.rust-analyzer",
-        "serayuzgur.crates",
-        "tamasfe.even-better-toml",
-        "panicbit.cargo"
+        "rust-lang.rust-analyzer"
     ]
 }
