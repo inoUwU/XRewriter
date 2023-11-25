@@ -1,0 +1,5 @@
+[tasks.BUILD]
+description = "Build Release"
+script = ['''
+cross build  --target=x86_64-unknown-linux-musl --release
+''']
