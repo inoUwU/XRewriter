@@ -8,8 +8,7 @@ use serenity::prelude::*;
 use std::env;
 
 static DOMAIN_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"\b(x\.com|twitter\.com)\b").unwrap());
-static URL_REGEX: Lazy<Regex> =
-    Lazy::new(|| Regex::new(r"(https?://[^?\s　]+)(\?[^　\s]+)?").unwrap());
+static URL_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"(https?://[^?\s　]+)(\?[^　\s]+)?").unwrap());
 static REP_DOMAIN: &str = "fixupx.com";
 
 struct Handler;
